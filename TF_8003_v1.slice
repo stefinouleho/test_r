@@ -1,0 +1,57 @@
+<transforms>
+  <transform id="8003" name="Amine alkylation" version="1">
+    <history>
+      <modification id="0" type="created" date="2025-08-04">
+        <authors>
+          <author name="Olga Grushin" />
+        </authors>
+      </modification>
+    </history>
+    <setup>
+      <yield>"undefined"</yield>
+      <reliability>"undefined"</reliability>
+      <reputation>"undefined"</reputation>
+      <homoselectivity>"undefined"</homoselectivity>
+      <heteroselectivity>"undefined"</heteroselectivity>
+      <orientationalSelectivity>"undefined"</orientationalSelectivity>
+      <conditionFlexibility>"undefined"</conditionFlexibility>
+      <thermodynamics>"undefined"</thermodynamics>
+    </setup>
+    <bibliography />
+    <comment />
+    <conditions />
+    <reactions>
+      <reaction id="0">
+        <reactants>
+          <reactant id="0">
+            <smarts>"[Cl,Br,I:3]-[Cz1:2]"</smarts>
+            <logic>"if molecule is amine group offpath or if molecule is chloride group offpath or if molecule is bromide group offpath or if molecule is iodide group offpath then kill
+"</logic>
+          </reactant>
+          <reactant id="1">
+            <smarts>"[#7H{1-2}z0:1]"</smarts>
+            <logic>"if molecule is amine group offpath or if molecule is chloride group offpath or if molecule is bromide group offpath or if molecule is iodide group offpath then kill
+foreach carbon alpha to atom 1 offpath defined as alpha_carbon in molecule {
+foreach alpha to alpha_carbon offpath defined as beta_atom in molecule {
+if beta_atom is hetero offpath then kill
+}
+}
+"</logic>
+          </reactant>
+        </reactants>
+        <agents />
+        <products>
+          <product id="0">
+            <smarts>"[Cz1:2]-[#7H{0-1}z0:1]"</smarts>
+            <logic>"undefined"</logic>
+          </product>
+          <product id="1">
+            <smarts>"[ClH1,BrH1,IH1:3]"</smarts>
+            <logic>"define it as ghost molecule
+"</logic>
+          </product>
+        </products>
+      </reaction>
+    </reactions>
+  </transform>
+</transforms>
